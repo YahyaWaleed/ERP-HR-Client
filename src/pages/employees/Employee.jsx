@@ -1,8 +1,14 @@
+import { Link } from 'react-router-dom';
+
 function Employee() {
   return (
     <div>
-      <h1>Employee Page</h1>
-      {/* Add your employee page content here */}
+      <h1>Employee Management</h1>
+      <nav>
+        <Link to="/employees/list">View All Employees</Link>
+        <br /><br />
+        <Link to="/employees/create">Create New Employee</Link>
+      </nav>
     </div>
   );
 }
