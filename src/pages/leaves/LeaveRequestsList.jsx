@@ -1,0 +1,50 @@
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { apiClient } from '../../api/apiClient';
+
+function LeaveRequestsList() {
+  const [requests, setRequests] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    apiClient.get('/leaves')
+      .then(setRequests)
+      .catch((err) => setError(err.message));
+  }, []);
+
+  return (
+    <div>
+      <h1>All Leave Requests</h1>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <table border="1" cellPadding="8">
+        <thead>
+          <tr>
+            <th>Employee</th>
+            <th>Type</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Days</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {requests.map((req) => (
+            <tr key={req.id}>
+              <td>{req.employeeName}</td>
+              <td>{req.leaveTypeName}</td>
+              <td>{req.startDate}</td>
+              <td>{req.endDate}</td>
+              <td>{req.daysCount}</td>
+              <td>{req.status}</td>
+              <td><Link to={`/leaves/${req.id}`}>View</Link></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default LeaveRequestsList;
