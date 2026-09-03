@@ -31,7 +31,7 @@ function LoanList() {
         <tbody>
           {loans.map((loan) => (
             <tr key={loan.id}>
-              <td>{loan.empCode}</td>
+              <td>{loan.empId}</td>
               <td>{loan.type}</td>
               <td>{loan.principalAmount}</td>
               <td>{loan.remainingBalance}</td>

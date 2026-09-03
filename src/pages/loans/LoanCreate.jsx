@@ -11,7 +11,6 @@ function LoanCreate() {
     type: 'PERSONAL',
     principalAmount: '',
     installmentsCount: '',
-    monthlyInstallment: '',
     startPeriod: '',
     approvedById: '',
     requestDate: '',
@@ -21,10 +20,16 @@ function LoanCreate() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // calculated automatically, not typed by the user
+  const monthlyInstallment =
+    form.principalAmount && form.installmentsCount
+      ? (Number(form.principalAmount) / Number(form.installmentsCount)).toFixed(2)
+      : '';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await apiClient.post('/loans', form);
+      await apiClient.post('/loans', { ...form, monthlyInstallment });
       navigate('/loans/list');
     } catch (err) {
       setError(err.message);
@@ -37,23 +42,35 @@ function LoanCreate() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <form onSubmit={handleSubmit}>
-        <input name="empId" placeholder="Employee ID" value={form.empId} onChange={handleChange} />
+        <label>Employee ID</label><br />
+        <input name="empId" value={form.empId} onChange={handleChange} /><br /><br />
 
+        <label>Loan Type</label><br />
         <select name="type" value={form.type} onChange={handleChange}>
           <option value="ADVANCE">Advance</option>
           <option value="PERSONAL">Personal</option>
           <option value="EMERGENCY">Emergency</option>
           <option value="HOUSING">Housing</option>
-        </select>
+        </select><br /><br />
 
-        <input name="principalAmount" placeholder="Principal Amount" value={form.principalAmount} onChange={handleChange} />
-        <input name="installmentsCount" placeholder="Number of Installments" value={form.installmentsCount} onChange={handleChange} />
-        <input name="monthlyInstallment" placeholder="Monthly Installment" value={form.monthlyInstallment} onChange={handleChange} />
-        <input name="startPeriod" placeholder="Start Period (e.g. 2026-09)" value={form.startPeriod} onChange={handleChange} />
-        <input name="approvedById" placeholder="Approver Employee ID (optional)" value={form.approvedById} onChange={handleChange} />
-        <input type="date" name="requestDate" value={form.requestDate} onChange={handleChange} />
+        <label>Principal Amount</label><br />
+        <input name="principalAmount" value={form.principalAmount} onChange={handleChange} /><br /><br />
 
-        <br /><br />
+        <label>Number of Installments</label><br />
+        <input name="installmentsCount" value={form.installmentsCount} onChange={handleChange} /><br /><br />
+
+        <label>Monthly Installment (calculated automatically)</label><br />
+        <input value={monthlyInstallment} disabled /><br /><br />
+
+        <label>Start Period (e.g. 2026-09)</label><br />
+        <input name="startPeriod" value={form.startPeriod} onChange={handleChange} /><br /><br />
+
+        <label>Approver Employee ID (optional)</label><br />
+        <input name="approvedById" value={form.approvedById} onChange={handleChange} /><br /><br />
+
+        <label>Request Date</label><br />
+        <input type="date" name="requestDate" value={form.requestDate} onChange={handleChange} /><br /><br />
+
         <button type="submit">Create Loan</button>
       </form>
     </div>

@@ -6,7 +6,7 @@ function JobTitleList() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    apiClient.get('/job-titles')
+    apiClient.get('/jobs')
       .then(setJobTitles)
       .catch((err) => setError(err.message));
   }, []);
