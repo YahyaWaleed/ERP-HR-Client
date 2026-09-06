@@ -1,15 +1,26 @@
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 function Dashboard() {
   const location = useLocation();
-  const username = location.state?.username || localStorage.getItem('username') || 'User';
+  const navigate = useNavigate();
+
+  // Retrieve username from location state or local storage
+  const username = location.state?.username || localStorage.getItem('username') || 'HR Manager';
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    navigate('/login');
+  };
 
   return (
-    <div>
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
       {/* Left Navigation Sidebar */}
-      <div>
-        <h1>HR Dashboard</h1>
-        <p>Welcome, {username}</p>
+      <div style={{ width: '220px', borderRight: '1px solid #ccc', padding: '15px' }}>
+        <h2>HR System</h2>
+        <p>Welcome, <strong>{username}</strong></p>
+        <button onClick={handleLogout}>Logout</button>
+        <hr />
 
         <nav>
           <p><strong>Main Menu</strong></p>
@@ -19,8 +30,8 @@ function Dashboard() {
           <Link to="/dashboard/employees">Employees</Link><br /><br />
           <Link to="/dashboard/attendance">Attendance</Link><br /><br />
           <Link to="/dashboard/leaves">Leaves</Link><br /><br />
-          <Link to="/dashboard/payroll">Payroll</Link><br /><br />
           <Link to="/dashboard/loans">Loans</Link><br /><br />
+          <Link to="/dashboard/payroll">Payroll</Link><br /><br />
 
           <p><strong>Organization</strong></p>
           <Link to="/dashboard/branches">Branches</Link><br /><br />
@@ -32,8 +43,8 @@ function Dashboard() {
         </nav>
       </div>
 
-      {/* Main Content Area where nested views render */}
-      <div>
+      {/* Main Content Pane where child routes mount */}
+      <div style={{ flex: 1, padding: '20px' }}>
         <Outlet context={{ username }} />
       </div>
     </div>

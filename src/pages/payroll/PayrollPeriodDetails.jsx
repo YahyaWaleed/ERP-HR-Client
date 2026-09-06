@@ -87,7 +87,7 @@ function PayrollPeriodDetails() {
                 <td>{p.basicSalary}</td>
                 <td>{p.netPay}</td>
                 <td>{p.status}</td>
-                <td><Link to={`/payroll/payslips/${p.id}`}>View</Link></td>
+                <td><Link to={`/dashboard/payroll/payslips/${p.id}`}>View</Link></td>
               </tr>
             ))}
           </tbody>

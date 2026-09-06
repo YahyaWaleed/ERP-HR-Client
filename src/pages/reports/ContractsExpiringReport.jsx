@@ -43,7 +43,7 @@ function ContractsExpiringReport() {
               <td>{r.daysLeft}</td>
               <td>
                 {r.daysLeft <= 90 && (
-                  <Link to={`/employees/${getEmpIdFromCode(r.empCode)}/contracts/renew`}>Renew Contract</Link>
+                  <Link to={`/dashboard/employees/${getEmpIdFromCode(r.empCode)}/contracts/renew`}>Renew Contract</Link>
                 )}
               </td>
             </tr>

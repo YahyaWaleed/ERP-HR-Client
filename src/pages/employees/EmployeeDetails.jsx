@@ -18,7 +18,7 @@ function EmployeeDetails() {
     if (!window.confirm('Are you sure you want to terminate this employee?')) return;
     try {
       await apiClient.post(`/employees/${id}/terminate`);
-      navigate('/employees/list');
+      navigate('/dashboard/employees/list');
     } catch (err) {
       setError(err.message);
     }

@@ -23,7 +23,7 @@ function PayrollPeriodCreate() {
     e.preventDefault();
     try {
       await apiClient.post('/payroll-periods', form);
-      navigate('/payroll/periods');
+      navigate('/dashboard/payroll/periods');
     } catch (err) {
       setError(err.message);
     }

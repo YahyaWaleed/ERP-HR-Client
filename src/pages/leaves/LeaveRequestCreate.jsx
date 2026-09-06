@@ -23,7 +23,7 @@ function LeaveRequestCreate() {
     try {
       // note: empId is part of the URL path, not the request body
       await apiClient.post(`/employees/${form.empId}/leaves`, form);
-      navigate('/leaves/list');
+      navigate('/dashboard/leaves/list');
     } catch (err) {
       setError(err.message);
     }

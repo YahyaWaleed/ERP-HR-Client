@@ -56,7 +56,7 @@ function EmployeeList() {
               <td>{emp.departmentName}</td>
               <td>{emp.jobTitleName}</td>
               <td>{emp.empStatus}</td>
-              <td><Link to={`/employees/${emp.id}`}>View</Link></td>
+              <td><Link to={`/dashboard/employees/${emp.id}`}>View</Link></td>
             </tr>
           ))}
         </tbody>

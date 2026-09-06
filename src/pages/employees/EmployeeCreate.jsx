@@ -56,7 +56,7 @@ function EmployeeCreate() {
     e.preventDefault();
     try {
       await apiClient.post('/employees', form);
-      navigate('/employees/list');
+      navigate('/dashboard/employees/list');
     } catch (err) {
       setError(err.message);
     }

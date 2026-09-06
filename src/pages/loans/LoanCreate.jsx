@@ -30,7 +30,7 @@ function LoanCreate() {
     e.preventDefault();
     try {
       await apiClient.post('/loans', { ...form, monthlyInstallment });
-      navigate('/loans/list');
+      navigate('/dashboard/loans/list');
     } catch (err) {
       setError(err.message);
     }

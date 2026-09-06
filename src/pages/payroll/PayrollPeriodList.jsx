@@ -34,7 +34,7 @@ function PayrollPeriodList() {
               <td>{period.fiscalYear}</td>
               <td>{period.payDate}</td>
               <td>{period.status}</td>
-              <td><Link to={`/payroll/periods/${period.periodCode}`}>Open</Link></td>
+              <td><Link to={`/dashboard/payroll/periods/${period.periodCode}`}>Open</Link></td>
             </tr>
           ))}
         </tbody>

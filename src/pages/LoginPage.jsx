@@ -24,6 +24,7 @@ function LoginPage() {
 
       const data = await response.json();
       localStorage.setItem('token', data.token);
+      localStorage.setItem('username', username);
       navigate('/dashboard');
 
     } catch (err) {

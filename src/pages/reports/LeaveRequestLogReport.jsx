@@ -49,7 +49,7 @@ function LeaveRequestLogReport() {
               <td>{r.reason}</td>
               <td>
                 {r.status === 'PENDING' && (
-                  <Link to={`/leaves/${r.requestId}`}>Manage</Link>
+                  <Link to={`/dashboard/leaves/${r.requestId}`}>Manage</Link>
                 )}
               </td>
             </tr>

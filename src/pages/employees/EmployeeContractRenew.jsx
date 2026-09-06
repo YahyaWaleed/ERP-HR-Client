@@ -27,7 +27,7 @@ function EmployeeContractRenew() {
     e.preventDefault();
     try {
       await apiClient.post(`/employees/${empId}/contracts`, form);
-      navigate(`/employees/${empId}`);
+      navigate(`/dashboard/employees/${empId}`);
     } catch (err) {
       setError(err.message);
     }

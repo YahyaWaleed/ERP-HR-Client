@@ -4,9 +4,9 @@ function Leave() {
   return (
     <div>
       <h1>Leave Management</h1>
-      <nav>
-        <Link to="/leaves/list">View All Leave Requests</Link><br /><br />
-        <Link to="/leaves/balances">View Leave Balances</Link>
+      <nav className="page-actions">
+        <Link to="/dashboard/leaves/list">View All Leave Requests</Link><br /><br />
+        <Link to="/dashboard/leaves/balances">View Leave Balances</Link>
       </nav>
     </div>
   );

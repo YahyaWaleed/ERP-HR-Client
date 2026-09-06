@@ -36,7 +36,7 @@ function LoanList() {
               <td>{loan.principalAmount}</td>
               <td>{loan.remainingBalance}</td>
               <td>{loan.status}</td>
-              <td><Link to={`/loans/${loan.id}`}>View</Link></td>
+              <td><Link to={`/dashboard/loans/${loan.id}`}>View</Link></td>
             </tr>
           ))}
         </tbody>

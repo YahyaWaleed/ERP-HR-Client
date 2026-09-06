@@ -38,7 +38,7 @@ function LeaveRequestsList() {
               <td>{req.endDate}</td>
               <td>{req.daysCount}</td>
               <td>{req.status}</td>
-              <td><Link to={`/leaves/${req.id}`}>View</Link></td>
+              <td><Link to={`/dashboard/leaves/${req.id}`}>View</Link></td>
             </tr>
           ))}
         </tbody>
