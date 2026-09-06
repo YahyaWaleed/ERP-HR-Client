@@ -6,7 +6,7 @@ function Dashboard() {
 
   return (
     <div>
-      {/* Left Navigation Menu */}
+      {/* Left Navigation Sidebar */}
       <div>
         <h1>HR Dashboard</h1>
         <p>Welcome, {username}</p>
@@ -32,7 +32,7 @@ function Dashboard() {
         </nav>
       </div>
 
-      {/* Main Content View Container */}
+      {/* Main Content Area where nested views render */}
       <div>
         <Outlet context={{ username }} />
       </div>
