@@ -18,6 +18,8 @@ function Report() {
         <Link to="/dashboard/reports/absence-watchlist">Absence Watch-list</Link><br /><br />
         <Link to="/dashboard/reports/active-loans">Active Loans</Link><br /><br />
         <Link to="/dashboard/reports/contracts-expiring">Contracts Expiring</Link>
+        <Link to="/dashboard/reports/top-attendance">Top 10 by Attendance</Link><br /><br />
+        <Link to="/dashboard/reports/top-net-salary">Top 10 by Net Salary</Link>
       </nav>
     </div>
   );
