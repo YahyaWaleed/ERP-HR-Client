@@ -46,6 +46,8 @@ import OvertimeTopf10Report from './pages/reports/OvertimeTopf10Report';
 import AbsenceWatchlistReport from './pages/reports/AbsenceWatchlistReport';
 import ActiveLoansReport from './pages/reports/ActiveLoansReport';
 import ContractsExpiringReport from './pages/reports/ContractsExpiringReport';
+import TopAttendanceReport from './pages/reports/TopAttendanceReport';
+import TopNetSalaryReport from './pages/reports/TopNetSalaryReport';
 
 function App() {
   return (
@@ -109,6 +111,8 @@ function App() {
           <Route path="reports/absence-watchlist" element={<AbsenceWatchlistReport />} />
           <Route path="reports/active-loans" element={<ActiveLoansReport />} />
           <Route path="reports/contracts-expiring" element={<ContractsExpiringReport />} />
+          <Route path="reports/top-attendance" element={<TopAttendanceReport />} />
+          <Route path="reports/top-net-salary" element={<TopNetSalaryReport />} />
         </Route>
 
         {/* Fallback Catch-all */}
