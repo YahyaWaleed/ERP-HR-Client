@@ -19,6 +19,26 @@ import AttendanceList from './pages/attendance/AttendanceList';
 import BranchList from './pages/organization/BranchList';
 import DepartmentList from './pages/organization/DepartmentList';
 import JobTitleList from './pages/organization/JobTitleList';
+import Payroll from './pages/payroll/payroll';
+import PayrollPeriodList from './pages/payroll/PayrollPeriodList';
+import PayrollPeriodCreate from './pages/payroll/PayrollPeriodCreate';
+import PayrollPeriodDetails from './pages/payroll/PayrollPeriodDetails';
+import PayslipDetails from './pages/payroll/PayslipDetails';
+import Report from './pages/reports/Report';
+import PayrollRegisterReport from './pages/reports/PayrollRegisterReport';
+import HeadcountByDeptReport from './pages/reports/HeadCountByDeptReport.jsx';
+import EmployeeDirectoryReport from './pages/reports/EmployeeDirectoryReport.jsx';
+import PayrollCostByDeptReport from './pages/reports/PayrollCostByDeptReport.jsx';
+import PayrollTrendReport from './pages/reports/PayrollTrendReport.jsx';
+import TaxInsuranceLiabilityReport from './pages/reports/TaxInsuranceLiabilityReport.jsx';
+import BankTransferReport from './pages/reports/BankTransferReport.jsx';
+import LeaveBalancesReport from './pages/reports/LeaveBalancesReport.jsx';
+import LeaveRequestLogReport from './pages/reports/LeaveRequestLogReport.jsx';
+import OvertimeTop10Report from './pages/reports/OvertimeTop10Report.jsx';
+import AbsenceWatchlistReport from './pages/reports/AbsenceWatchlistReport.jsx';
+import ActiveLoansReport from './pages/reports/ActiveLoansReport.jsx';
+import ContractsExpiringReport from './pages/reports/ContractsExpiringReport.jsx';
+import EmployeeContractRenew from './pages/employees/EmployeeContractRenew';
 
 
 function App() {
@@ -47,6 +67,29 @@ function App() {
         <Route path="/branches" element={<ProtectedRoute><BranchList /></ProtectedRoute>} />
         <Route path="/departments" element={<ProtectedRoute><DepartmentList /></ProtectedRoute>} />
         <Route path="/job-titles" element={<ProtectedRoute><JobTitleList /></ProtectedRoute>} />
+
+
+        <Route path="/payroll" element={<ProtectedRoute><Payroll /></ProtectedRoute>} />
+        <Route path="/payroll/periods" element={<ProtectedRoute><PayrollPeriodList /></ProtectedRoute>} />
+        <Route path="/payroll/periods/create" element={<ProtectedRoute><PayrollPeriodCreate /></ProtectedRoute>} />
+        <Route path="/payroll/periods/:periodCode" element={<ProtectedRoute><PayrollPeriodDetails /></ProtectedRoute>} />
+        <Route path="/payroll/payslips/:id" element={<ProtectedRoute><PayslipDetails /></ProtectedRoute>} />
+
+        <Route path="/reports" element={<ProtectedRoute><Report /></ProtectedRoute>} />
+        <Route path="/reports/headcount-by-department" element={<ProtectedRoute><HeadcountByDeptReport /></ProtectedRoute>} />
+        <Route path="/reports/payroll-register" element={<ProtectedRoute><PayrollRegisterReport /></ProtectedRoute>} />
+        <Route path="/reports/employee-directory" element={<ProtectedRoute><EmployeeDirectoryReport /></ProtectedRoute>} />
+        <Route path="/reports/payroll-cost-by-department" element={<ProtectedRoute><PayrollCostByDeptReport /></ProtectedRoute>} />
+        <Route path="/reports/payroll-trend" element={<ProtectedRoute><PayrollTrendReport /></ProtectedRoute>} />
+        <Route path="/reports/tax-insurance-liability" element={<ProtectedRoute><TaxInsuranceLiabilityReport /></ProtectedRoute>} />
+        <Route path="/reports/bank-transfer" element={<ProtectedRoute><BankTransferReport /></ProtectedRoute>} />
+        <Route path="/reports/leave-balances" element={<ProtectedRoute><LeaveBalancesReport /></ProtectedRoute>} />
+        <Route path="/reports/leave-requests" element={<ProtectedRoute><LeaveRequestLogReport /></ProtectedRoute>} />
+        <Route path="/reports/overtime-top10" element={<ProtectedRoute><OvertimeTop10Report /></ProtectedRoute>} />
+        <Route path="/reports/absence-watchlist" element={<ProtectedRoute><AbsenceWatchlistReport /></ProtectedRoute>} />
+        <Route path="/reports/active-loans" element={<ProtectedRoute><ActiveLoansReport /></ProtectedRoute>} />
+        <Route path="/reports/contracts-expiring" element={<ProtectedRoute><ContractsExpiringReport /></ProtectedRoute>} />
+        <Route path="/employees/:id/contracts/renew" element={<ProtectedRoute><EmployeeDetails /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );

@@ -11,7 +11,9 @@ function Dashboard() {
         <Link to="/attendance">Attendance</Link><br /><br />
         <Link to="/branches">Branches</Link><br /><br />
         <Link to="/departments">Departments</Link><br /><br />
-        <Link to="/jobs">Job Titles</Link>
+        <Link to="/jobs">Job Titles</Link><br /><br />
+        <Link to="/payroll">Payroll</Link><br /><br />
+        <Link to="/reports">Reports</Link>
       </nav>
     </div>
   );

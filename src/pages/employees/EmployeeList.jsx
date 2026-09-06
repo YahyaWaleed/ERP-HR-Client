@@ -5,6 +5,8 @@ import { apiClient } from '../../api/apiClient';
 function EmployeeList() {
   const [employees, setEmployees] = useState([]);
   const [error, setError] = useState('');
+  const [search, setSearch] = useState(""); // for search input field
+
 
   useEffect(() => {
     apiClient.get('/employees')
@@ -12,10 +14,28 @@ function EmployeeList() {
       .catch((err) => setError(err.message));
   }, []); // empty array = run this once, when the page first loads
 
+  // filter employees based on search input
+  const filteredEmployees = employees.filter((employee) => {
+    const searchTerm = search.toLowerCase();
+
+    return (
+      employee.fullNameEn.toLowerCase().includes(searchTerm) ||
+      employee.empCode.toLowerCase().includes(searchTerm)
+    );
+  });
+
   return (
     <div>
       <h1>All Employees</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      
+      <input
+        type="text"
+        placeholder="Search by name or employee code..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
       <table border="1" cellPadding="8">
         <thead>
@@ -29,7 +49,7 @@ function EmployeeList() {
           </tr>
         </thead>
         <tbody>
-          {employees.map((emp) => (
+          {filteredEmployees.map((emp) => (
             <tr key={emp.id}>
               <td>{emp.empCode}</td>
               <td>{emp.fullNameEn}</td>

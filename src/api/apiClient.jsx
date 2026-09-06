@@ -29,14 +29,20 @@ async function request(path, options = {}) {
 
   // if server returns an error, throw an error with the message from the backend (if it exists) or a generic message
   if (!response.ok) {
-    const errorBody = await response.json().catch(() => null);
-    throw new Error(errorBody?.message || 'Something went wrong');
+      const text = await response.text();
+      let message = `Request failed (${response.status})`;
+      try {
+        const parsed = JSON.parse(text);
+        message = parsed.message || message;
+      } catch {
+        // response wasn't JSON — keep the default message
+      }
+      throw new Error(message);
+    }
+
+    const text = await response.text();
+    return text ? JSON.parse(text) : null;
   }
-
-  if (response.status === 204) return null; // no content, e.g. after a DELETE/terminate
-
-  return response.json(); // convert the backend response to JSON and return it to the caller
-}
 
 
 // this object will be used to make API calls in the frontend, e.g. apiClient.get('/employees') or apiClient.post('/employees', { name: 'John Doe' })
@@ -47,3 +53,5 @@ export const apiClient = {
   patch: (path, body) => request(path, { method: 'PATCH', body: JSON.stringify(body) }),
   delete: (path) => request(path, { method: 'DELETE' }),
 };
+
+
