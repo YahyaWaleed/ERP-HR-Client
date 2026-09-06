@@ -1,95 +1,36 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-import Employee from './pages/employees/Employee';
+import HomeOverview from './pages/HomeOverview';
 import EmployeeList from './pages/employees/EmployeeList';
-import EmployeeCreate from './pages/employees/EmployeeCreate';
-import EmployeeDetails from './pages/employees/EmployeeDetails';
-import ProtectedRoute from './auth/ProtectedRoute';
-import Leave from './pages/leaves/Leave';
-import LeaveRequestList from './pages/leaves/LeaveRequestsList';
-import LeaveRequestCreate from './pages/leaves/LeaveRequestCreate';
-import LeaveBalanceList from './pages/leaves/LeaveBalanceList';
-import LeaveRequestDetails from './pages/leaves/LeaveRequestDetails';
-import Loan from './pages/loans/Loan';
-import LoanList from './pages/loans/LoanList';
-import LoanCreate from './pages/loans/LoanCreate';
-import LoanDetails from './pages/loans/LoanDetails';
 import AttendanceList from './pages/attendance/AttendanceList';
+import LeaveRequestsList from './pages/leaves/LeaveRequestsList';
+import LoanList from './pages/loans/LoanList';
 import BranchList from './pages/organization/BranchList';
 import DepartmentList from './pages/organization/DepartmentList';
 import JobTitleList from './pages/organization/JobTitleList';
-import Payroll from './pages/payroll/payroll';
 import PayrollPeriodList from './pages/payroll/PayrollPeriodList';
-import PayrollPeriodCreate from './pages/payroll/PayrollPeriodCreate';
-import PayrollPeriodDetails from './pages/payroll/PayrollPeriodDetails';
-import PayslipDetails from './pages/payroll/PayslipDetails';
 import Report from './pages/reports/Report';
-import PayrollRegisterReport from './pages/reports/PayrollRegisterReport';
-import HeadcountByDeptReport from './pages/reports/HeadCountByDeptReport.jsx';
-import EmployeeDirectoryReport from './pages/reports/EmployeeDirectoryReport.jsx';
-import PayrollCostByDeptReport from './pages/reports/PayrollCostByDeptReport.jsx';
-import PayrollTrendReport from './pages/reports/PayrollTrendReport.jsx';
-import TaxInsuranceLiabilityReport from './pages/reports/TaxInsuranceLiabilityReport.jsx';
-import BankTransferReport from './pages/reports/BankTransferReport.jsx';
-import LeaveBalancesReport from './pages/reports/LeaveBalancesReport.jsx';
-import LeaveRequestLogReport from './pages/reports/LeaveRequestLogReport.jsx';
-import OvertimeTop10Report from './pages/reports/OvertimeTop10Report.jsx';
-import AbsenceWatchlistReport from './pages/reports/AbsenceWatchlistReport.jsx';
-import ActiveLoansReport from './pages/reports/ActiveLoansReport.jsx';
-import ContractsExpiringReport from './pages/reports/ContractsExpiringReport.jsx';
-import EmployeeContractRenew from './pages/employees/EmployeeContractRenew';
-
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="/employees" element={<ProtectedRoute><Employee /></ProtectedRoute>} />
-        <Route path="/employees/list" element={<ProtectedRoute><EmployeeList /></ProtectedRoute>} />
-        <Route path="/employees/create" element={<ProtectedRoute><EmployeeCreate /></ProtectedRoute>} />
-        <Route path="/employees/:id" element={<ProtectedRoute><EmployeeDetails /></ProtectedRoute>} />
-        <Route path="/loans" element={<ProtectedRoute><Loan /></ProtectedRoute>} />
-        <Route path="/loans/list" element={<ProtectedRoute><LoanList /></ProtectedRoute>} />
-        <Route path="/loans/create" element={<ProtectedRoute><LoanCreate /></ProtectedRoute>} />
-        <Route path="/loans/:id" element={<ProtectedRoute><LoanDetails /></ProtectedRoute>} />
-
-        <Route path="/leaves" element={<ProtectedRoute><Leave /></ProtectedRoute>} />
-        <Route path="/leaves/list" element={<ProtectedRoute><LeaveRequestList /></ProtectedRoute>} />
-        <Route path="/leaves/create" element={<ProtectedRoute><LeaveRequestCreate /></ProtectedRoute>} />
-        <Route path="/leaves/balances" element={<ProtectedRoute><LeaveBalanceList /></ProtectedRoute>} />
-        <Route path="/leaves/:id" element={<ProtectedRoute><LeaveRequestDetails /></ProtectedRoute>} />
-
-        <Route path="/attendance" element={<ProtectedRoute><AttendanceList /></ProtectedRoute>} />
-        <Route path="/branches" element={<ProtectedRoute><BranchList /></ProtectedRoute>} />
-        <Route path="/departments" element={<ProtectedRoute><DepartmentList /></ProtectedRoute>} />
-        <Route path="/job-titles" element={<ProtectedRoute><JobTitleList /></ProtectedRoute>} />
-
-
-        <Route path="/payroll" element={<ProtectedRoute><Payroll /></ProtectedRoute>} />
-        <Route path="/payroll/periods" element={<ProtectedRoute><PayrollPeriodList /></ProtectedRoute>} />
-        <Route path="/payroll/periods/create" element={<ProtectedRoute><PayrollPeriodCreate /></ProtectedRoute>} />
-        <Route path="/payroll/periods/:periodCode" element={<ProtectedRoute><PayrollPeriodDetails /></ProtectedRoute>} />
-        <Route path="/payroll/payslips/:id" element={<ProtectedRoute><PayslipDetails /></ProtectedRoute>} />
-
-        <Route path="/reports" element={<ProtectedRoute><Report /></ProtectedRoute>} />
-        <Route path="/reports/headcount-by-department" element={<ProtectedRoute><HeadcountByDeptReport /></ProtectedRoute>} />
-        <Route path="/reports/payroll-register" element={<ProtectedRoute><PayrollRegisterReport /></ProtectedRoute>} />
-        <Route path="/reports/employee-directory" element={<ProtectedRoute><EmployeeDirectoryReport /></ProtectedRoute>} />
-        <Route path="/reports/payroll-cost-by-department" element={<ProtectedRoute><PayrollCostByDeptReport /></ProtectedRoute>} />
-        <Route path="/reports/payroll-trend" element={<ProtectedRoute><PayrollTrendReport /></ProtectedRoute>} />
-        <Route path="/reports/tax-insurance-liability" element={<ProtectedRoute><TaxInsuranceLiabilityReport /></ProtectedRoute>} />
-        <Route path="/reports/bank-transfer" element={<ProtectedRoute><BankTransferReport /></ProtectedRoute>} />
-        <Route path="/reports/leave-balances" element={<ProtectedRoute><LeaveBalancesReport /></ProtectedRoute>} />
-        <Route path="/reports/leave-requests" element={<ProtectedRoute><LeaveRequestLogReport /></ProtectedRoute>} />
-        <Route path="/reports/overtime-top10" element={<ProtectedRoute><OvertimeTop10Report /></ProtectedRoute>} />
-        <Route path="/reports/absence-watchlist" element={<ProtectedRoute><AbsenceWatchlistReport /></ProtectedRoute>} />
-        <Route path="/reports/active-loans" element={<ProtectedRoute><ActiveLoansReport /></ProtectedRoute>} />
-        <Route path="/reports/contracts-expiring" element={<ProtectedRoute><ContractsExpiringReport /></ProtectedRoute>} />
-        <Route path="/employees/:id/contracts/renew" element={<ProtectedRoute><EmployeeDetails /></ProtectedRoute>} />
+        {/* Parent Route for Navigation Shell */}
+        <Route path="/dashboard" element={<Dashboard />}>
+          {/* Index Route renders automatically at /dashboard */}
+          <Route index element={<HomeOverview />} />
+          
+          {/* Nested Child Routes rendered inside <Outlet /> */}
+          <Route path="employees" element={<EmployeeList />} />
+          <Route path="attendance" element={<AttendanceList />} />
+          <Route path="leaves" element={<LeaveRequestsList />} />
+          <Route path="loans" element={<LoanList />} />
+          <Route path="branches" element={<BranchList />} />
+          <Route path="departments" element={<DepartmentList />} />
+          <Route path="jobs" element={<JobTitleList />} />
+          <Route path="payroll" element={<PayrollPeriodList />} />
+          <Route path="reports" element={<Report />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
