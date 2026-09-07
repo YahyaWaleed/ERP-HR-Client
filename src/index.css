@@ -296,6 +296,7 @@ nav a:hover {
   font-weight: 500;
 }
 
+/* ============ Live clock in top-right corner ============ */
 .live-clock {
   position: fixed;
   top: 0;
@@ -308,7 +309,7 @@ nav a:hover {
   color: var(--color-text-muted);
   z-index: 9999;
   padding: 10px 20px;
-  background: var(--color-bg);
+  pointer-events: none; /* lets clicks pass through to whatever is underneath */
 }
 
 .clock-time {
@@ -316,6 +317,7 @@ nav a:hover {
   font-size: 0.8rem;
   color: var(--color-text);
   font-variant-numeric: tabular-nums;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 0 6px rgba(255, 255, 255, 0.7);
 }
 
 /* ============ Status colors ============ */

@@ -27,9 +27,6 @@ function EmployeeList() {
 
   return (
     <div>
-      <button className="btn-approve" onClick={handleApprove}>Approve</button>{' '}
-      <button className="btn-reject" onClick={() => setShowRejectForm(true)}>Reject</button>{' '}
-      <button onClick={handleCancel}>Cancel</button>
       <h1>All Employees</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
