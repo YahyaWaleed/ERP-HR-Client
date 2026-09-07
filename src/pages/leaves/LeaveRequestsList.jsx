@@ -33,7 +33,7 @@ function LeaveRequestsList() {
         <tbody>
           {requests.map((req) => (
             <tr key={req.id}>
-              <td>{req.employeeName}</td>
+              <td>{req.empCode} {req.employeeName}</td>
               <td>{req.leaveTypeName}</td>
               <td>{req.startDate}</td>
               <td>{req.endDate}</td>

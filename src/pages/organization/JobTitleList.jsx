@@ -37,7 +37,7 @@ function JobTitleList() {
               <td>{j.jobGrade}</td>
               <td>{j.minSalary}</td>
               <td>{j.maxSalary}</td>
-              <td>{j.isManagerial ? 'Yes' : 'No'}</td>
+              <td>{j.managerial ? 'Yes' : 'No'}</td>
             </tr>
           ))}
         </tbody>
