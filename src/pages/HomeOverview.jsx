@@ -29,10 +29,16 @@ function HomeOverview() {
           apiClient.get('/loans')
         ]);
 
-        setStats({
-          employeesCount: empRes.status === 'fulfilled' && Array.isArray(empRes.value) ? empRes.value.length : 0,
-          pendingLeaves: leaveRes.status === 'fulfilled' && Array.isArray(leaveRes.value) ? leaveRes.value.length : 0,
-          activeLoans: loanRes.status === 'fulfilled' && Array.isArray(loanRes.value) ? loanRes.value.length : 0,
+       setStats({
+        employeesCount: empRes.status === 'fulfilled' && Array.isArray(empRes.value)
+          ? empRes.value.filter((e) => e.empStatus === 'ACTIVE').length
+          : 0,
+        pendingLeaves: leaveRes.status === 'fulfilled' && Array.isArray(leaveRes.value)
+          ? leaveRes.value.filter((l) => l.status === 'PENDING').length
+          : 0,
+        activeLoans: loanRes.status === 'fulfilled' && Array.isArray(loanRes.value)
+          ? loanRes.value.filter((l) => l.status === 'ACTIVE').length
+          : 0,
         });
       } catch (err) {
         console.error("Error loading overview metrics:", err);
@@ -47,8 +53,8 @@ function HomeOverview() {
   return (
     <div>
       <div>
-        <h2>Hello, {username}</h2>
-        <p>Company Performance & Activity Overview</p>
+        <h2>Welcome, {username}</h2>
+        <p> Activity Overview</p>
       </div>
 
       <hr />
