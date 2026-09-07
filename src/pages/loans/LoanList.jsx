@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { apiClient } from '../../api/apiClient';
+import { statusClass } from '../../utils/statusClass';
 
 function LoanList() {
   const [loans, setLoans] = useState([]);
@@ -35,7 +36,7 @@ function LoanList() {
               <td>{loan.type}</td>
               <td>{loan.principalAmount}</td>
               <td>{loan.remainingBalance}</td>
-              <td>{loan.status}</td>
+              <td><span className={statusClass(loan.status)}>{loan.status}</span></td>
               <td><Link to={`/dashboard/loans/${loan.id}`}>View</Link></td>
             </tr>
           ))}

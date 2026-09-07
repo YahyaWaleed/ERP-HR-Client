@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { apiClient } from '../../api/apiClient';
+import { statusClass } from '../../utils/statusClass';
 
 function PayrollPeriodDetails() {
   const { periodCode } = useParams();
@@ -53,7 +54,7 @@ function PayrollPeriodDetails() {
   return (
     <div>
       <h1>Period: {period.periodCode}</h1>
-      <p><strong>Status:</strong> {period.status}</p>
+      <p><strong>Status:</strong> <span className={statusClass(period.status)}>{period.status}</span></p>
       <p><strong>Fiscal Year:</strong> {period.fiscalYear}</p>
       <p><strong>Pay Date:</strong> {period.payDate}</p>
 
@@ -86,7 +87,7 @@ function PayrollPeriodDetails() {
                 <td>{p.empCode}</td>
                 <td>{p.basicSalary}</td>
                 <td>{p.netPay}</td>
-                <td>{p.status}</td>
+                <td><span className={statusClass(p.status)}>{p.status}</span></td>
                 <td><Link to={`/dashboard/payroll/payslips/${p.id}`}>View</Link></td>
               </tr>
             ))}

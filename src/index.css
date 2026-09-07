@@ -1,96 +1,352 @@
-/* all css code is written by cursor */
+/* All of this is written entirely by Claude; i just guide him */
 
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
+
+/* ============ Design tokens ============ */
+:root {
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-border: #e2e5ea;
+  --color-text: #1a1d23;
+  --color-text-muted: #6b7280;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-danger: #dc2626;
+  --color-danger-bg: #fef2f2;
+  --color-success: #16a34a;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4 {
-	margin-top: 0;
+/* ============ Reset & base ============ */
+* {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ============ Typography ============ */
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 32px 0 12px 0;
+  color: var(--color-text);
+}
+
+p {
+  color: var(--color-text-muted);
+}
+
+strong {
+  color: var(--color-text);
+}
+
+/* ============ Page layout ============ */
+/* Every page's root <div> gets breathing room automatically */
+#root > div,
+#root > div > div {
+  padding: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ============ Links ============ */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Nav hub pages (Employee.jsx, Loan.jsx, Report.jsx, Dashboard links, etc.) */
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 8px;
+  box-shadow: var(--shadow);
+  max-width: 320px;
+}
+
+nav a {
+  padding: 12px 16px;
+  border-radius: 6px;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+nav a:hover {
+  background: var(--color-bg);
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+/* Hide the manual <br><br> spacers you used between nav links —
+   the nav flex gap above already handles spacing */
+nav br {
+  display: none;
+}
+
+/* Table action links (View / Manage / Renew) look like small buttons */
+td a {
+  display: inline-block;
+  padding: 6px 12px;
+  background: var(--color-bg);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+td a:hover {
+  background: var(--color-primary);
+  color: white;
+  text-decoration: none;
+}
+
+/* ============ Buttons ============ */
+button {
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  margin: 4px 4px 4px 0;
+}
+
+button:hover {
+  background: var(--color-primary-hover);
+}
+
+button:disabled {
+  background: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+/* ============ Forms ============ */
 form {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	max-width: 720px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  max-width: 500px;
 }
 
-form br {
-	display: none;
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+  margin-top: 16px;
+}
+
+label:first-of-type {
+  margin-top: 0;
 }
 
 input,
-select,
-textarea {
-	width: 100%;
-	max-width: 520px;
-	padding: 8px 10px;
-	border-radius: 6px;
-	font: inherit;
+select {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin-bottom: 4px;
 }
 
-button {
-	width: fit-content;
-	padding: 8px 14px;
-	border-radius: 6px;
-	cursor: pointer;
-	font: inherit;
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: white;
 }
 
-.page-actions {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 12px;
+input:disabled {
+  background: var(--color-border);
+  color: var(--color-text-muted);
 }
 
-.page-actions br {
-	display: none;
+/* Standalone search inputs sitting outside a <form> (e.g. AttendanceList, LeaveBalanceList) */
+body > #root input:not(form input) {
+  max-width: 280px;
+  display: inline-block;
+  margin-right: 8px;
 }
 
-.page-actions a {
-	display: inline-flex;
-	align-items: center;
-	min-height: 42px;
-	padding: 8px 16px;
-	border: 1px solid currentColor;
-	border-radius: 7px;
-	text-decoration: none;
-	transition: transform 160ms ease, box-shadow 160ms ease;
+/* Report pages: input + button on their own line before the table */
+h1 + p + label,
+h1 + label {
+  margin-top: 0;
 }
 
-.page-actions a:hover,
-.page-actions a:focus-visible {
-	transform: translateY(-1px);
-	box-shadow: 0 3px 8px rgb(0 0 0 / 12%);
-}
-
+/* ============ Tables ============ */
 table {
-	width: 100%;
-	margin: 16px 0 24px;
-	border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-top: 16px;
 }
 
-th,
-td {
-	padding: 10px 12px;
-	text-align: left;
-	vertical-align: top;
+thead {
+  background: var(--color-text);
 }
 
 th {
-	font-weight: 700;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-@media (max-width: 700px) {
-	table {
-		display: block;
-		overflow-x: auto;
-		white-space: nowrap;
-	}
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9rem;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: var(--color-bg);
+}
+
+/* ============ Error messages ============ */
+p[style*="color: red"],
+p[style*="color:red"] {
+  background: var(--color-danger-bg) !important;
+  color: var(--color-danger) !important;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* ============ Stronger table borders ============ */
+table {
+  border: 1px solid var(--color-text);
+}
+
+th {
+  border-bottom: 2px solid var(--color-text);
+}
+
+td {
+  border-bottom: 1px solid #c9cdd4; /* darker than before */
+}
+
+td:not(:last-child) {
+  border-right: 1px solid var(--color-border);
+}
+
+/* ============ Sidebar / nav hierarchy fix ============ */
+/* Page titles: heavier */
+h1 {
+  font-weight: 800;
+}
+
+/* Nav links act as "subtitles" under a hub page — lighten them relative to h1 */
+nav a {
+  font-weight: 400;
+}
+
+nav a:hover {
+  font-weight: 500;
+}
+
+.live-clock {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  z-index: 9999;
+  padding: 10px 20px;
+  background: var(--color-bg);
+}
+
+.clock-time {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============ Status colors ============ */
+.status-approved,
+.status-paid,
+.status-active,
+.status-closed {
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.status-rejected,
+.status-cancelled,
+.status-terminated {
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+.status-pending,
+.status-open,
+.status-processed,
+.status-draft {
+  color: #b45309; /* amber, for "in progress" states */
+  font-weight: 700;
+}
+
+/* Approve / Reject action buttons — stay blue at rest, shift color only on hover */
+.btn-approve:hover {
+  background: var(--color-success);
+}
+
+.btn-reject:hover {
+  background: var(--color-danger);
 }

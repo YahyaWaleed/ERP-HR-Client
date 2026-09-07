@@ -1,4 +1,5 @@
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import LiveClock from '../components/LiveClock';
 
 function Dashboard() {
   const location = useLocation();
@@ -15,6 +16,7 @@ function Dashboard() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <LiveClock />
       {/* Left Navigation Sidebar */}
       <div style={{ width: '220px', borderRight: '1px solid #ccc', padding: '15px' }}>
         <h2>HR System</h2>

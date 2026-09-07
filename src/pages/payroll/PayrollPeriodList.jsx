@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { apiClient } from '../../api/apiClient';
+import { statusClass } from '../../utils/statusClass';
 
 function PayrollPeriodList() {
   const [periods, setPeriods] = useState([]);
@@ -33,7 +34,7 @@ function PayrollPeriodList() {
               <td>{period.periodCode}</td>
               <td>{period.fiscalYear}</td>
               <td>{period.payDate}</td>
-              <td>{period.status}</td>
+              <td><span className={statusClass(p.status)}>{p.status}</span></td>
               <td><Link to={`/dashboard/payroll/periods/${period.periodCode}`}>Open</Link></td>
             </tr>
           ))}

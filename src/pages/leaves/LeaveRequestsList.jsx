@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { apiClient } from '../../api/apiClient';
+import { statusClass } from '../../utils/statusClass';
 
 function LeaveRequestsList() {
   const [requests, setRequests] = useState([]);
@@ -37,7 +38,7 @@ function LeaveRequestsList() {
               <td>{req.startDate}</td>
               <td>{req.endDate}</td>
               <td>{req.daysCount}</td>
-              <td>{req.status}</td>
+              <td><span className={statusClass(req.status)}>{req.status}</span></td>
               <td><Link to={`/dashboard/leaves/${req.id}`}>View</Link></td>
             </tr>
           ))}

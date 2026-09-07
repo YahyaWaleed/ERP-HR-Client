@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { apiClient } from '../../api/apiClient';
+import { statusClass } from '../../utils/statusClass';
 
 function LoanDetails() {
   const { id } = useParams();
@@ -45,7 +46,7 @@ function LoanDetails() {
       <p><strong>Type:</strong> {loan.type}</p>
       <p><strong>Principal:</strong> {loan.principalAmount}</p>
       <p><strong>Remaining Balance:</strong> {loan.remainingBalance}</p>
-      <p><strong>Status:</strong> {loan.status}</p>
+      <p><strong>Status:</strong> <span className={statusClass(loan.status)}>{loan.status}</span></p>
       <p><strong>Approved By:</strong> {loan.approvedById || 'Not yet approved'}</p>
 
       {loan.status === 'ACTIVE' && (

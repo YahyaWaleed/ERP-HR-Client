@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { apiClient } from '../../api/apiClient';
+import { statusClass } from '../../utils/statusClass';
 
 function EmployeeList() {
   const [employees, setEmployees] = useState([]);
@@ -26,6 +27,9 @@ function EmployeeList() {
 
   return (
     <div>
+      <button className="btn-approve" onClick={handleApprove}>Approve</button>{' '}
+      <button className="btn-reject" onClick={() => setShowRejectForm(true)}>Reject</button>{' '}
+      <button onClick={handleCancel}>Cancel</button>
       <h1>All Employees</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
@@ -55,7 +59,7 @@ function EmployeeList() {
               <td>{emp.fullNameEn}</td>
               <td>{emp.departmentName}</td>
               <td>{emp.jobTitleName}</td>
-              <td>{emp.empStatus}</td>
+              <td><span className={statusClass(emp.empStatus)}>{emp.empStatus}</span></td>
               <td><Link to={`/dashboard/employees/${emp.id}`}>View</Link></td>
             </tr>
           ))}

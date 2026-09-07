@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { apiClient } from '../../api/apiClient';
+import { statusClass } from '../../utils/statusClass';
 
 function EmployeeDetails() {
   const { id } = useParams(); // reads the :id from the URL
@@ -35,7 +36,7 @@ function EmployeeDetails() {
       <p><strong>Job Title:</strong> {employee.jobTitleName}</p>
       <p><strong>Branch:</strong> {employee.branchName}</p>
       <p><strong>Manager:</strong> {employee.managerName || 'None'}</p>
-      <p><strong>Status:</strong> {employee.empStatus}</p>
+      <p><strong>Status:</strong> <span className={statusClass(employee.empStatus)}>{employee.empStatus}</span></p>
       <p><strong>Email:</strong> {employee.email}</p>
       <p><strong>Mobile:</strong> {employee.mobile}</p>
 

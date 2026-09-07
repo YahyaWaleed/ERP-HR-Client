@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { apiClient } from '../../api/apiClient';
+import { statusClass } from '../../utils/statusClass';
 
 function LeaveRequestDetails() {
   const { id } = useParams();
@@ -55,27 +56,27 @@ function LeaveRequestDetails() {
       <p><strong>Type:</strong> {request.leaveTypeName}</p>
       <p><strong>Dates:</strong> {request.startDate} to {request.endDate} ({request.daysCount} days)</p>
       <p><strong>Reason:</strong> {request.reason}</p>
-      <p><strong>Status:</strong> {request.status}</p>
+      <p><strong>Status:</strong> <span className={statusClass(request.status)}>{request.status}</span></p>
       {request.rejectReason && <p><strong>Rejected because:</strong> {request.rejectReason}</p>}
 
       {request.status === 'PENDING' && (
-        <>
-          <button onClick={handleApprove}>Approve</button>{' '}
-          <button onClick={() => setShowRejectForm(true)}>Reject</button>{' '}
-          <button onClick={handleCancel}>Cancel</button>
+  <>
+    <button className="btn-approve" onClick={handleApprove}>Approve</button>{' '}
+    <button className="btn-reject" onClick={() => setShowRejectForm(true)}>Reject</button>{' '}
+    <button onClick={handleCancel}>Cancel</button>
 
-          {showRejectForm && (
-            <div>
-              <input
-                placeholder="Reason for rejection"
-                value={rejectReason}
-                onChange={(e) => setRejectReason(e.target.value)}
-              />
-              <button onClick={handleReject}>Confirm Reject</button>
-            </div>
-          )}
-        </>
-      )}
+    {showRejectForm && (
+      <div>
+        <input
+          placeholder="Reason for rejection"
+          value={rejectReason}
+          onChange={(e) => setRejectReason(e.target.value)}
+        />
+        <button onClick={handleReject}>Confirm Reject</button>
+      </div>
+    )}
+  </>
+)}
     </div>
   );
 }
