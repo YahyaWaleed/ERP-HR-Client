@@ -1,5 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 import { apiClient } from '../../api/apiClient';
 
 function LeaveRequestCreate() {
@@ -34,6 +36,14 @@ function LeaveRequestCreate() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Active employees only
+  const employeeOptions = employees
+    .filter((employee) => employee.empStatus === 'ACTIVE')
+    .map((employee) => ({
+      value: employee.id,
+      label: `${employee.empCode} - ${employee.fullNameEn}`,
+    }));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -59,22 +69,23 @@ function LeaveRequestCreate() {
         <label>Employee:</label>
         <br />
 
-        <select
-          name="empId"
-          value={form.empId}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Employee</option>
-
-          {employees
-            .filter((employee) => employee.empStatus === 'ACTIVE')
-            .map((employee) => (
-              <option key={employee.id} value={employee.id}>
-                {employee.empCode} - {employee.fullNameEn}
-              </option>
-            ))}
-        </select>
+        <Select
+          options={employeeOptions}
+          value={
+            employeeOptions.find(
+              (option) => option.value === Number(form.empId)
+            ) || null
+          }
+          onChange={(selectedOption) =>
+            setForm({
+              ...form,
+              empId: selectedOption ? selectedOption.value : '',
+            })
+          }
+          placeholder="Select Employee"
+          isSearchable
+          isClearable
+        />
 
         <br />
         <br />
@@ -149,3 +160,4 @@ function LeaveRequestCreate() {
 }
 
 export default LeaveRequestCreate;
+

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { apiClient } from '../../api/apiClient';
 
 function EmployeeContractRenew() {
-  const { empId } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
@@ -26,8 +26,8 @@ function EmployeeContractRenew() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await apiClient.post(`/employees/${empId}/contracts`, form);
-      navigate(`/dashboard/employees/${empId}`);
+      await apiClient.post(`/employees/${id}/contracts`, form);
+      navigate(`/dashboard/employees/${id}`);
     } catch (err) {
       setError(err.message);
     }
@@ -41,7 +41,7 @@ function EmployeeContractRenew() {
 
       <form onSubmit={handleSubmit}>
         <label>Contract Type</label><br />
-        <select name="contractType" value={form.contractType} onChange={handleChange}>
+        <select name="contractType" value={form.contractType} onChange={handleChange} required>
           <option value="PERMANENT">Permanent</option>
           <option value="FIXED_TERM">Fixed Term</option>
           <option value="PART_TIME">Part Time</option>
@@ -50,13 +50,13 @@ function EmployeeContractRenew() {
         </select><br /><br />
 
         <label>Start Date</label><br />
-        <input type="date" name="startDate" value={form.startDate} onChange={handleChange} /><br /><br />
+        <input type="date" name="startDate" value={form.startDate} onChange={handleChange} required /><br /><br />
 
         <label>End Date (optional)</label><br />
         <input type="date" name="endDate" value={form.endDate} onChange={handleChange} /><br /><br />
 
         <label>Basic Salary</label><br />
-        <input name="basicSalary" value={form.basicSalary} onChange={handleChange} /><br /><br />
+        <input name="basicSalary" value={form.basicSalary} onChange={handleChange} required /><br /><br />
 
         <label>Weekly Hours</label><br />
         <input name="weeklyHours" value={form.weeklyHours} onChange={handleChange} /><br /><br />

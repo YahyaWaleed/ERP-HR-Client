@@ -30,6 +30,9 @@ import PayslipDetails from './pages/payroll/PayslipDetails';
 import BranchList from './pages/organization/BranchList';
 import DepartmentList from './pages/organization/DepartmentList';
 import JobTitleList from './pages/organization/JobTitleList';
+import BranchEmployees from './pages/organization/BranchEmployees';
+import DepartmentEmployees from './pages/organization/DepartmentEmployees';
+import JobTitleEmployees from './pages/organization/JobTitleEmployees';
 
 // Reports
 import Report from './pages/reports/Report';
@@ -94,7 +97,10 @@ function App() {
           {/* Organization Sub-routes */}
           <Route path="branches" element={<BranchList />} />
           <Route path="departments" element={<DepartmentList />} />
+          <Route path="branches/:branchId/employees" element={<BranchEmployees />} />
+          <Route path="departments/:deptId/employees" element={<DepartmentEmployees />} />
           <Route path="jobs" element={<JobTitleList />} />
+          <Route path="jobs/:jobTitleId/employees" element={<JobTitleEmployees />} />
 
           {/* Reports */}
           <Route path="reports" element={<Report />} />

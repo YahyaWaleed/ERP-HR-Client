@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { apiClient } from '../../api/apiClient';
+import { useNavigate } from 'react-router-dom';
 
 function JobTitleList() {
   const [jobTitles, setJobTitles] = useState([]);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     apiClient.get('/jobs')
@@ -26,6 +28,7 @@ function JobTitleList() {
             <th>Min Salary</th>
             <th>Max Salary</th>
             <th>Managerial</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +41,11 @@ function JobTitleList() {
               <td>{j.minSalary}</td>
               <td>{j.maxSalary}</td>
               <td>{j.managerial ? 'Yes' : 'No'}</td>
+              <td>
+                <button onClick={() => navigate(`/dashboard/jobs/${j.id}/employees`)}>
+                  View Employees
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

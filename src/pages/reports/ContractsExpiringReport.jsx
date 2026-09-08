@@ -6,6 +6,7 @@ function ContractsExpiringReport() {
   const [months, setMonths] = useState('12');
   const [rows, setRows] = useState([]);
   const [error, setError] = useState('');
+  
 
   const handleRun = async () => {
     try {
@@ -42,7 +43,7 @@ function ContractsExpiringReport() {
               <td>{r.endDate}</td>
               <td>{r.daysLeft}</td>
               <td>
-                {r.daysLeft <= 90 && (
+                {r.daysLeft <= 365 && (
                   <Link to={`/dashboard/employees/${getEmpIdFromCode(r.empCode)}/contracts/renew`}>Renew Contract</Link>
                 )}
               </td>

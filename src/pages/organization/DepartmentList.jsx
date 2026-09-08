@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { apiClient } from '../../api/apiClient';
+import { useNavigate } from 'react-router-dom';
 
 function DepartmentList() {
+  const navigate = useNavigate();
   const [departments, setDepartments] = useState([]);
   const [error, setError] = useState('');
 
@@ -25,6 +27,7 @@ function DepartmentList() {
             <th>Branch</th>
             <th>Parent Department</th>
             <th>Cost Center</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +39,15 @@ function DepartmentList() {
               <td>{d.branchName}</td>
               <td>{d.parentDeptName || '—'}</td>
               <td>{d.costCenter}</td>
+              <td>
+                <button
+                  onClick={() =>
+                    navigate(`/dashboard/departments/${d.id}/employees`)
+                  }
+                >
+                  View Employees
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

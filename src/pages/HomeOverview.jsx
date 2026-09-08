@@ -4,6 +4,7 @@ import { apiClient } from '../api/apiClient';
 import EmployeeList from './employees/EmployeeList';
 import LeaveRequestsList from './leaves/LeaveRequestsList';
 import LoanList from './loans/LoanList';
+import ContractsExpiringReport from './reports/ContractsExpiringReport';
 import './HomeOverview.css';
 
 function HomeOverview() {
@@ -50,11 +51,14 @@ function HomeOverview() {
     loadOverviewData();
   }, []);
 
+  const role = localStorage.getItem('role') || 'User';
+  
   return (
     <div>
       <div>
         <h2>Welcome, {username}</h2>
-        <p> Activity Overview</p>
+        <p>{role}</p>
+        <p>Activity Overview</p>
       </div>
 
       <hr />
@@ -82,12 +86,25 @@ function HomeOverview() {
           <li className="quick-navigation-item"><a className="quick-navigation-link" href="#employees" onClick={(event) => { event.preventDefault(); setActiveQuickView('employees'); }}>View Employees</a></li>
           <li className="quick-navigation-item"><a className="quick-navigation-link" href="#leaves" onClick={(event) => { event.preventDefault(); setActiveQuickView('leaves'); }}>Review Leave Requests</a></li>
           <li className="quick-navigation-item"><a className="quick-navigation-link" href="#loans" onClick={(event) => { event.preventDefault(); setActiveQuickView('loans'); }}>View Loan Requests</a></li>
+          <li className="quick-navigation-item">
+            <a
+              className="quick-navigation-link"
+              href="#expiring-contracts"
+              onClick={(event) => {
+                event.preventDefault();
+                setActiveQuickView('expiring-contracts');
+              }}
+            >
+              View Expiring Contracts
+            </a>
+          </li>
         </ul>
       </div>
 
       {activeQuickView === 'employees' && <EmployeeList />}
       {activeQuickView === 'leaves' && <LeaveRequestsList />}
       {activeQuickView === 'loans' && <LoanList />}
+      {activeQuickView === 'expiring-contracts' && <ContractsExpiringReport />}
     </div>
   );
 }

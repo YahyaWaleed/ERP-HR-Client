@@ -9,7 +9,19 @@ function LeaveRequestsList() {
 
   useEffect(() => {
     apiClient.get('/leaves')
-      .then(setRequests)
+      .then((data) => {
+        const statusOrder = {
+          PENDING: 1,
+          REJECTED: 2,
+          APPROVED: 3
+        };
+
+        const sortedRequests = [...data].sort(
+          (a, b) => statusOrder[a.status] - statusOrder[b.status]
+        );
+
+        setRequests(sortedRequests);
+      })
       .catch((err) => setError(err.message));
   }, []);
 
