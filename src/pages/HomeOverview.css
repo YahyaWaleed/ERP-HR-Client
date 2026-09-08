@@ -2,19 +2,9 @@
    PREMIUM HOME OVERVIEW
    ============================================================ */
 
-
 /* ============================================================
    WELCOME / USER HEADER
    ============================================================ */
-
-/*
-   Structure:
-   <div>
-     <h2>Welcome, username</h2>
-     <p>Activity Overview</p>
-   </div>
-   <hr>
-*/
 
 .quick-navigation {
   margin-top: 32px;
@@ -22,10 +12,6 @@
   border-top: 1px solid var(--color-border);
 }
 
-
-/* Target the Welcome section:
-   It is the first div inside HomeOverview's root container.
-*/
 .quick-navigation ~ * {
   box-sizing: border-box;
 }
@@ -35,12 +21,6 @@
    KPI / METRIC CARDS
    ============================================================ */
 
-/*
-   The KPI row is the div immediately after the <hr>.
-   Because the JSX has no className on it, we target it
-   structurally from the page container.
-*/
-
 /* KPI row */
 hr + div {
   display: flex !important;
@@ -49,30 +29,19 @@ hr + div {
   width: 100% !important;
 }
 
-
 /* Individual KPI cards */
 hr + div > div {
   position: relative;
   flex: 1;
   width: auto !important;
   min-width: 0;
-
   padding: 20px 22px !important;
-
   border: 1px solid var(--color-border) !important;
   border-radius: 14px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 1),
-      rgba(248, 250, 252, 0.96)
-    );
+  background: var(--color-surface);
 
-  box-shadow:
-    0 5px 15px rgba(15, 23, 42, 0.05),
-    0 12px 30px rgba(15, 23, 42, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-card);
 
   overflow: hidden;
 
@@ -82,15 +51,12 @@ hr + div > div {
     border-color 0.2s ease;
 }
 
-
 /* Subtle top accent */
 hr + div > div::before {
   content: "";
-
   position: absolute;
   top: 0;
   left: 0;
-
   width: 100%;
   height: 3px;
 
@@ -101,42 +67,30 @@ hr + div > div::before {
   );
 }
 
-
 /* KPI card hover */
 hr + div > div:hover {
   transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.25) !important;
 
-  border-color: rgba(37, 99, 235, 0.18) !important;
-
-  box-shadow:
-    0 8px 20px rgba(15, 23, 42, 0.08),
-    0 18px 35px rgba(37, 99, 235, 0.07),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-hover);
 }
-
 
 /* KPI labels */
 hr + div > div p {
   margin: 0 0 10px;
-
   color: var(--color-text-muted);
-
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
 
-
 /* KPI numbers */
 hr + div > div h3 {
   margin: 0;
-
   color: var(--color-text);
-
   font-size: 2rem;
   font-weight: 800;
   line-height: 1;
-
   letter-spacing: -0.04em;
 }
 
@@ -145,40 +99,26 @@ hr + div > div h3 {
    WELCOME TITLE
    ============================================================ */
 
-/*
-   HomeOverview's first child is the Welcome section.
-   We use the structure of the component rather than
-   changing the JSX.
-*/
-
 hr {
   margin: 22px 0 0;
-
   border: 0;
   border-top: 1px solid var(--color-border);
 }
 
-
-/* Make the Welcome heading more prominent */
+/* Welcome heading */
 h2 {
   margin-bottom: 6px;
-
   color: var(--color-text);
-
   font-size: 1.65rem;
   font-weight: 800;
   line-height: 1.2;
-
   letter-spacing: -0.035em;
 }
-
 
 /* Activity Overview subtitle */
 h2 + p {
   margin: 0;
-
   color: var(--color-text-muted);
-
   font-size: 0.9rem;
   font-weight: 500;
 }
@@ -190,54 +130,42 @@ h2 + p {
 
 .quick-navigation h3 {
   margin: 0 0 13px;
-
   color: var(--color-text);
-
   font-size: 0.95rem;
   font-weight: 700;
-
   letter-spacing: -0.01em;
 }
-
 
 .quick-navigation-list {
   display: flex;
   flex-wrap: nowrap;
-
   gap: 6px;
 
   margin: 0;
   padding: 5px;
 
   list-style: none;
-
   width: 100%;
-
   overflow-x: auto;
 
   border: 1px solid var(--color-border);
   border-radius: 10px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.98),
-      rgba(248, 250, 252, 0.98)
-    );
+  background: var(--color-surface);
 
-  box-shadow:
-    0 5px 15px rgba(15, 23, 42, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-soft);
 }
-
 
 .quick-navigation-item {
+  width: 100%;
   margin: 0;
+  padding: 0;
 }
-
 
 .quick-navigation-link {
   display: block;
+  width: 100%;
+  box-sizing: border-box;
 
   padding: 9px 15px;
 
@@ -261,16 +189,15 @@ h2 + p {
     box-shadow 0.2s ease;
 }
 
-
 .quick-navigation-link:hover,
 .quick-navigation-link:focus-visible {
-  border-color: rgba(37, 99, 235, 0.18);
+  border-color: rgba(37, 99, 235, 0.25);
 
   background:
     linear-gradient(
       145deg,
-      #ffffff,
-      #f1f5ff
+      var(--color-surface),
+      rgba(37, 99, 235, 0.08)
     );
 
   color: var(--color-primary);
@@ -283,12 +210,50 @@ h2 + p {
     0 5px 12px rgba(37, 99, 235, 0.12);
 }
 
-
 .quick-navigation-link:active {
   transform: translateY(0);
 
   box-shadow:
     0 2px 5px rgba(37, 99, 235, 0.08);
+}
+
+
+/* ============================================================
+   DARK MODE REFINEMENTS
+   ============================================================ */
+
+[data-theme="dark"] hr + div > div {
+  background:
+    linear-gradient(
+      145deg,
+      #24272d,
+      #202329
+    );
+
+  border-color: #363a42 !important;
+}
+
+[data-theme="dark"] .quick-navigation-list {
+  background:
+    linear-gradient(
+      145deg,
+      #24272d,
+      #202329
+    );
+
+  border-color: #363a42;
+}
+
+[data-theme="dark"] .quick-navigation-link:hover,
+[data-theme="dark"] .quick-navigation-link:focus-visible {
+  background:
+    linear-gradient(
+      145deg,
+      #292d34,
+      #24282e
+    );
+
+  color: #60a5fa;
 }
 
 
@@ -306,7 +271,6 @@ h2 + p {
   hr + div > div {
     width: 100% !important;
   }
-
 }
 
 
@@ -327,24 +291,4 @@ h2 + p {
   .quick-navigation-link {
     text-align: center;
   }
-
-}
-
-.quick-navigation-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.quick-navigation-item {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.quick-navigation-link {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
 }

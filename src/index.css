@@ -1243,3 +1243,316 @@ nav a:hover {
   }
 
 }
+
+/* ============ Dark mode ============ */
+
+[data-theme="dark"] {
+  --color-bg: #181a1f;
+  --color-surface: #22252b;
+  --color-border: #363a42;
+  --color-text: #d1d5db;
+  --color-text-muted: #9ca3af;
+
+  --color-primary: #60a5fa;
+  --color-primary-hover: #3b82f6;
+
+  --color-danger: #f87171;
+  --color-danger-bg: #2a1719;
+
+  --color-success: #4ade80;
+
+  --color-header-bg: #101216;
+  --color-header-text: #d1d5db;
+
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-soft:
+    0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-card:
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-hover:
+    0 18px 40px rgba(0, 0, 0, 0.4),
+    0 5px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Dark mode backgrounds */
+
+[data-theme="dark"] body {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.08),
+      transparent 30%
+    ),
+    var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Sidebar */
+
+[data-theme="dark"] #root > div:has(> .live-clock) > div:nth-child(2) {
+  background:
+    linear-gradient(
+      180deg,
+      #202329,
+      #1b1e23
+    );
+}
+
+/* Navigation */
+
+[data-theme="dark"] nav {
+  background:
+    linear-gradient(
+      145deg,
+      #24272d,
+      #1e2126
+    );
+}
+
+[data-theme="dark"] nav p,
+[data-theme="dark"] nav p strong {
+  color: #9ca3af;
+}
+
+/* Sidebar logout button */
+
+[data-theme="dark"] #root > div:has(> .live-clock) > div:nth-child(2) > button {
+  background:
+    linear-gradient(
+      145deg,
+      #292125,
+      #241c1f
+    );
+}
+
+/* Forms */
+
+[data-theme="dark"] form {
+  background:
+    linear-gradient(
+      145deg,
+      #24272d,
+      #202329
+    );
+}
+
+/* Inputs */
+
+[data-theme="dark"] input,
+[data-theme="dark"] select {
+  background: #181b20;
+  color: #d1d5db;
+  border-color: #3b4049;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus {
+  background: #1c2026;
+  color: #e5e7eb;
+}
+
+[data-theme="dark"] input:hover,
+[data-theme="dark"] select:hover {
+  border-color: #4b5563;
+}
+
+/* Tables */
+
+[data-theme="dark"] table {
+  background: var(--color-surface);
+}
+
+[data-theme="dark"] thead {
+  background:
+    linear-gradient(
+      135deg,
+      #252a32,
+      #111827
+    );
+}
+
+[data-theme="dark"] th {
+  color: #d1d5db;
+  border-bottom-color: #3b4049;
+}
+
+[data-theme="dark"] td {
+  background: #22252b;
+  color: #c9cdd3;
+  border-bottom-color: #363a42;
+}
+
+[data-theme="dark"] tbody tr:hover td {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(37, 99, 235, 0.12),
+      rgba(37, 99, 235, 0.04)
+    );
+}
+
+/* Table action links */
+
+[data-theme="dark"] td a {
+  background:
+    linear-gradient(
+      145deg,
+      #292d34,
+      #24282e
+    );
+  color: #9ec5ff;
+}
+
+/* Search dropdown */
+
+[data-theme="dark"] .search-results {
+  background: #22252b;
+}
+
+[data-theme="dark"] .search-results li {
+  color: #c9cdd3;
+}
+
+/* Error messages */
+
+[data-theme="dark"] p[style*="color: red"],
+[data-theme="dark"] p[style*="color:red"] {
+  background:
+    linear-gradient(
+      145deg,
+      #2a1719,
+      #251719
+    ) !important;
+  color: #f87171 !important;
+  border-color: #5b2529;
+}
+
+/* Scrollbar */
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* ============================================================
+   THEME TOGGLE
+   ============================================================ */
+
+/* ============================================================
+   THEME TOGGLE SWITCH
+   ============================================================ */
+
+.theme-toggle-switch {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 90px;
+  height: 44px;
+  border-radius: 44px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  z-index: 9998;
+  margin: 0;
+}
+
+/* Light Theme Styling (Soft background with inset shadows) */
+.theme-toggle-switch.light {
+  background-color: #e5e5e7;
+  opacity: 0.65;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.15),
+              inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+}
+
+.theme-toggle-switch.light:hover {
+  transform: none; /* Prevents global button hover overrides */
+}
+
+/* Dark Theme Styling */
+.theme-toggle-switch.dark {
+  background-color: #272729;
+  opacity: 0.65;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.6),
+              inset -1px -1px 3px rgba(255, 255, 255, 0.05);
+}
+
+.theme-toggle-switch.dark:hover {
+  transform: none; /* Prevents global button hover overrides */
+}
+
+/* Icon Containers */
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: color 0.3s ease;
+  width: 22px;
+  height: 22px;
+}
+
+.theme-toggle-switch.light .sun-icon {
+  color: #ffffff;
+}
+
+.theme-toggle-switch.light .moon-icon {
+  color: #727275;
+}
+
+.theme-toggle-switch.dark .sun-icon {
+  color: #8e8e93;
+}
+
+.theme-toggle-switch.dark .moon-icon {
+  color: #ffffff;
+}
+
+/* Center icon inside sliding handle */
+.toggle-handle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+.toggle-handle svg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+}
+
+/* Light Mode Knob (Gradient Orange Sun + White Icon) */
+.theme-toggle-switch.light .toggle-handle {
+  transform: translateX(0);
+  background: linear-gradient(135deg, #ffc837 0%, #ff8008 100%);
+  box-shadow: 2px 4px 8px rgba(255, 128, 8, 0.4);
+}
+
+/* Dark Mode Knob (Grey Moon + White Icon) */
+.theme-toggle-switch.dark .toggle-handle {
+  transform: translateX(46px);
+  background: linear-gradient(135deg, #616161 0%, #424242 100%);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Inactive Background Icons styling */
+.theme-toggle-switch.light .sun-icon { opacity: 0; }
+.theme-toggle-switch.light .moon-icon { color: #828288; opacity: 1; }
+
+.theme-toggle-switch.dark .sun-icon { color: #828288; opacity: 1; }
+.theme-toggle-switch.dark .moon-icon { opacity: 0; }
